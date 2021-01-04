@@ -1268,3 +1268,9 @@ void ImGui_ImplVulkan_UpdateTexture(VkDescriptorSet& descriptor_set, VkSampler s
 		vkUpdateDescriptorSets(v->Device, 1, write_desc, 0, NULL);
 	}
 }
+
+void ImGui_ImplVulkan_DestroyTexture(VkDescriptorSet& descriptor_set)
+{
+	ImGui_ImplVulkan_InitInfo* v = &g_VulkanInitInfo;
+	vkFreeDescriptorSets(v->Device, v->DescriptorPool, 1, &descriptor_set);
+}
